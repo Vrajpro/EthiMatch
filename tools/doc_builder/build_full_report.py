@@ -82,6 +82,19 @@ def build_cover(doc) -> None:
     r.font.color.rgb = TEAL
     r.font.name = "Calibri"
 
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_before = Pt(10)
+    p.paragraph_format.space_after = Pt(6)
+    r = p.add_run("Source code: ")
+    r.font.size = Pt(12)
+    r.font.color.rgb = NAVY
+    r.font.name = "Calibri"
+    r2 = p.add_run("https://github.com/Vrajpro/EthiMatch")
+    r2.font.size = Pt(12)
+    r2.font.color.rgb = TEAL
+    r2.font.name = "Calibri"
+
     for _ in range(2):
         doc.add_paragraph()
 
@@ -97,7 +110,6 @@ def build_cover(doc) -> None:
             ["Submission", "August 2026"],
             ["Word count (body)", "approximately 7,000 (±10%)"],
             ["Submission format", "PDF only (Turnitin)"],
-            ["Source code", "https://github.com/Vrajpro/EthiMatch"],
         ],
     )
     add_page_break(doc)
