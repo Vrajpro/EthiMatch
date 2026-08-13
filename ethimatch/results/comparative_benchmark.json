@@ -1,0 +1,36 @@
+{
+  "comparative": {
+    "synthetic": {
+      "data_source": "synthetic",
+      "n_patients": 100,
+      "n_patients_loaded": 100,
+      "n_trials": 6,
+      "neuro_symbolic": {
+        "accuracy": 0.9931884057971013,
+        "precision": 0.644927536231884,
+        "recall": 0.6666666666666666,
+        "f1": 0.6550387596899224,
+        "specificity": 0.8270833333333334,
+        "fpr": 0.0062499999999999995
+      },
+      "pure_neural": {
+        "accuracy": 0.975,
+        "precision": 0.4865384615384616,
+        "recall": 0.6944444444444445,
+        "f1": 0.5615942028985507,
+        "specificity": 0.8088931516582475,
+        "fpr": 0.024440181675085947
+      },
+      "mcnemar": {
+        "ethimatch_correct_baseline_wrong": 14,
+        "ethimatch_wrong_baseline_correct": 5,
+        "chi2": 3.3684,
+        "p_value_approx": 0.0665,
+        "significant_at_0.05": false
+      },
+      "gold_description": "Symbolic validator on structured profiles (synthetic/MIMIC) or CSV pre-extraction (csv source)"
+    },
+    "mimic_available": true
+  },
+  "csv_evaluation": null
+}

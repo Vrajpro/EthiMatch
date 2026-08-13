@@ -1,0 +1,148 @@
+EthiMatch — Clinical Audit Examples (7005SCN Dissertation)
+========================================================================
+
+EXAMPLE: INCONCLUSIVE
+Patient ID     : P001
+Trial          : BASE-002 — General Adult Baseline Study
+System verdict : INCONCLUSIVE
+Active conditions (STOP=null): 
+------------------------------------------------------------------------
+
+CLINICAL NARRATIVE (XAI Layer)
+General Adult Baseline Study — Conditionally eligible (Match Score: 85.0%).
+
+Manual review required:
+- Age: Patient age was not found in the clinical note. Eligibility cannot be confirmed automatically — manual chart review is required.
+
+RULE-BY-RULE AUDIT TRACE
+  [INCONCLUSIVE  ] Age: Patient age was not found in the clinical note. Eligibility cannot be confirmed automatically — manual chart review is required.
+  [PASS          ] Gender: No gender restriction.
+  [PASS          ] Disease: No disease restriction.
+  [PASS          ] Stage: Patient age satisfies the trial age requirement (unknown).
+  [PASS          ] Biomarkers: No biomarker requirement.
+  [PASS          ] ECOG: No ECOG restriction.
+  [PASS          ] BMI (Max): No BMI upper limit.
+  [PASS          ] Comorbidities: No excluded comorbidities.
+  [PASS          ] Prior Therapies: No excluded therapies.
+  [PASS          ] BMI (Min): No BMI lower limit.
+
+FULL AUDIT REPORT
+ETHIMATCH CLINICAL TRIAL MATCHING — AUDIT REPORT
+============================================================
+Data source: (unspecified)
+
+SECTION A: INPUT CLINICAL NOTE
+----------------------------------------
+
+
+SECTION B: NEURAL EXTRACTION (BioBERT + Regex + Negation Filter)
+----------------------------------------
+  Age: NOT EXTRACTED (requires manual review)
+  Gender: NOT EXTRACTED (requires manual review)
+  Primary Disease: NOT EXTRACTED (requires manual review)
+  Cancer Stage: NOT EXTRACTED (requires manual review)
+  Biomarkers: NOT EXTRACTED (requires manual review)
+  BMI: NOT EXTRACTED (requires manual review)
+  ECOG Performance Status: NOT EXTRACTED (requires manual review)
+  Comorbidities: NOT EXTRACTED (requires manual review)
+  Prior Therapies: NOT EXTRACTED (requires manual review)
+
+SECTION C: SYMBOLIC VALIDATION & TRIAL RECOMMENDATIONS
+----------------------------------------
+
+Trial: General Adult Baseline Study (BASE-002)
+Match Score: 85.0%
+General Adult Baseline Study — Conditionally eligible (Match Score: 85.0%).
+
+Manual review required:
+- Age: Patient age was not found in the clinical note. Eligibility cannot be confirmed automatically — manual chart review is required.
+
+Rule-by-rule audit trace:
+  [INCONCLUSIVE] Age: Patient age was not found in the clinical note. Eligibility cannot be confirmed automatically — manual chart review is required.
+  [PASS] Gender: No gender restriction.
+  [PASS] Disease: No disease restriction.
+  [PASS] Stage: Patient age satisfies the trial age requirement (unknown).
+  [PASS] Biomarkers: No biomarker requirement.
+  [PASS] ECOG: No ECOG restriction.
+  [PASS] BMI (Max): No BMI upper limit.
+  [PASS] Comorbidities: No excluded comorbidities.
+  [PASS] Prior Therapies: No excluded therapies.
+  [PASS] BMI (Min): No BMI lower limit.
+
+SECTION D: SUMMARY
+----------------------------------------
+Eligible for 0 of 1 registered trial(s).
+This report requires clinician review before any enrollment decision.
+
+EXAMPLE: INELIGIBLE
+Patient ID     : P002
+Trial          : BASE-002 — General Adult Baseline Study
+System verdict : INELIGIBLE
+Active conditions (STOP=null): 
+------------------------------------------------------------------------
+
+CLINICAL NARRATIVE (XAI Layer)
+General Adult Baseline Study — Conditionally eligible (Match Score: 85.0%).
+
+Manual review required:
+- Age: Patient age was not found in the clinical note. Eligibility cannot be confirmed automatically — manual chart review is required.
+
+RULE-BY-RULE AUDIT TRACE
+  [INCONCLUSIVE  ] Age: Patient age was not found in the clinical note. Eligibility cannot be confirmed automatically — manual chart review is required.
+  [PASS          ] Gender: No gender restriction.
+  [PASS          ] Disease: No disease restriction.
+  [PASS          ] Stage: Patient age satisfies the trial age requirement (unknown).
+  [PASS          ] Biomarkers: No biomarker requirement.
+  [PASS          ] ECOG: No ECOG restriction.
+  [PASS          ] BMI (Max): No BMI upper limit.
+  [PASS          ] Comorbidities: No excluded comorbidities.
+  [PASS          ] Prior Therapies: No excluded therapies.
+  [PASS          ] BMI (Min): No BMI lower limit.
+
+FULL AUDIT REPORT
+ETHIMATCH CLINICAL TRIAL MATCHING — AUDIT REPORT
+============================================================
+Data source: (unspecified)
+
+SECTION A: INPUT CLINICAL NOTE
+----------------------------------------
+
+
+SECTION B: NEURAL EXTRACTION (BioBERT + Regex + Negation Filter)
+----------------------------------------
+  Age: NOT EXTRACTED (requires manual review)
+  Gender: NOT EXTRACTED (requires manual review)
+  Primary Disease: NOT EXTRACTED (requires manual review)
+  Cancer Stage: NOT EXTRACTED (requires manual review)
+  Biomarkers: NOT EXTRACTED (requires manual review)
+  BMI: NOT EXTRACTED (requires manual review)
+  ECOG Performance Status: NOT EXTRACTED (requires manual review)
+  Comorbidities: NOT EXTRACTED (requires manual review)
+  Prior Therapies: NOT EXTRACTED (requires manual review)
+
+SECTION C: SYMBOLIC VALIDATION & TRIAL RECOMMENDATIONS
+----------------------------------------
+
+Trial: General Adult Baseline Study (BASE-002)
+Match Score: 85.0%
+General Adult Baseline Study — Conditionally eligible (Match Score: 85.0%).
+
+Manual review required:
+- Age: Patient age was not found in the clinical note. Eligibility cannot be confirmed automatically — manual chart review is required.
+
+Rule-by-rule audit trace:
+  [INCONCLUSIVE] Age: Patient age was not found in the clinical note. Eligibility cannot be confirmed automatically — manual chart review is required.
+  [PASS] Gender: No gender restriction.
+  [PASS] Disease: No disease restriction.
+  [PASS] Stage: Patient age satisfies the trial age requirement (unknown).
+  [PASS] Biomarkers: No biomarker requirement.
+  [PASS] ECOG: No ECOG restriction.
+  [PASS] BMI (Max): No BMI upper limit.
+  [PASS] Comorbidities: No excluded comorbidities.
+  [PASS] Prior Therapies: No excluded therapies.
+  [PASS] BMI (Min): No BMI lower limit.
+
+SECTION D: SUMMARY
+----------------------------------------
+Eligible for 0 of 1 registered trial(s).
+This report requires clinician review before any enrollment decision.

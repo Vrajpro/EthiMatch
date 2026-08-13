@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+ethimatch/venv/
+
+# Secrets / local env
+.env
+.env.*
+*.pem
+ethimatch/.streamlit/secrets.toml
+
+# IDE / OS
+.vscode/
+.idea/
+.cursor/
+*.swp
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# Word / Office temps
+~$*
+*.tmp
+*.bak
+
+# Caches and local model downloads
+.cache/
+**/huggingface/
+**/transformers_cache/
+*.log
+
+# Generated neural silver cache (regenerable)
+ethimatch/data/silver/*.json
+!ethimatch/data/silver/.gitkeep
+
+# Runtime chart exports (regenerable)
+ethimatch/results/figures/
+
+# Optional large local PDF dumps of cited papers (keep figures in docs/figures)
+docs/references/*.pdf
+
+# Docker local overrides
+docker-compose.override.yml
+
+# --- Bulky Synthea exports (regenerable; exceed GitHub file-size limits) ---
+# Core app only needs patients / conditions / medications / careplans / encounters.
+data/synthea/claims_transactions.csv
+data/synthea/observations.csv
+data/synthea/imaging_studies.csv
+data/synthea/claims.csv
+
+# Scratch / personal artifacts
+ethimatch/personal learn.docx
+ethimatch/results/test_*.pdf

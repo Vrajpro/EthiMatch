@@ -1,0 +1,34 @@
+{
+  "trial": "ONC-001",
+  "source": "Synthea",
+  "cohort_size": 1163,
+  "elapsed_seconds": 244.67843651771545,
+  "method_a": {
+    "label": "Pure Neural Baseline",
+    "tp": 6,
+    "fp": 1,
+    "tn": 1156,
+    "fn": 0,
+    "precision": 0.8571428571428571,
+    "recall": 1.0,
+    "f1": 0.923076923076923,
+    "accuracy": 0.999140154772141
+  },
+  "method_b": {
+    "label": "EthiMatch (Neuro-Symbolic)",
+    "tp": 3,
+    "fp": 0,
+    "tn": 1157,
+    "fn": 3,
+    "precision": 1.0,
+    "recall": 0.5,
+    "f1": 0.6666666666666666,
+    "accuracy": 0.9974204643164231
+  },
+  "dangerous_false_positive_ids_method_a": [
+    "06629c1a-687d-5121-1e28-ae123c1fe647"
+  ],
+  "blocked_by_symbolic_engine": [
+    "06629c1a-687d-5121-1e28-ae123c1fe647"
+  ]
+}

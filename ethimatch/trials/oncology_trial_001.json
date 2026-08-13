@@ -1,0 +1,23 @@
+{
+  "trial_id": "ONC-001",
+  "trial_name": "Advanced NSCLC Immunotherapy Trial",
+  "description": "Phase II open-label study of pembrolizumab plus chemotherapy in adults with advanced non-small cell lung cancer. Excludes patients with diabetes, congestive heart failure, or active opioid analgesia (fentanyl).",
+  "inclusion": {
+    "age_min": 45,
+    "age_max": 80,
+    "gender": ["male", "female"],
+    "diseases": ["NSCLC", "Lung Cancer"]
+  },
+  "exclusion": {
+    "excluded_comorbidities": [
+      "diabetes",
+      "type 1 diabetes",
+      "type 2 diabetes",
+      "CHF",
+      "congestive heart failure"
+    ],
+    "excluded_prior_therapies": [
+      "fentanyl"
+    ]
+  }
+}

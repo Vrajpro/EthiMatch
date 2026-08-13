@@ -1,0 +1,23 @@
+{
+  "trial_id": "NCT-FAKE-002",
+  "trial_name": "Phase II HER2+ Breast Cancer ADC Study",
+  "description": "An open-label trial of trastuzumab deruxtecan (T-DXd) in HER2-positive metastatic breast cancer patients who have progressed on prior HER2 therapy.",
+  "inclusion": {
+    "age_min": 18,
+    "age_max": 75,
+    "gender": ["female"],
+    "diseases": ["Breast Cancer"],
+    "stages": ["II", "IIA", "IIB", "III", "IIIA", "IIIB", "IV"],
+    "required_biomarkers": ["HER2+"],
+    "ecog_max": 1,
+    "bmi_max": 40.0
+  },
+  "exclusion": {
+    "excluded_comorbidities": [
+      "CHF",
+      "uncontrolled cardiac arrhythmia"
+    ],
+    "excluded_prior_therapies": [],
+    "bmi_min": 16.0
+  }
+}

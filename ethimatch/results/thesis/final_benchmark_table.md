@@ -1,0 +1,7 @@
+# EthiMatch Final Benchmark Table
+
+| Source | Neuro F1 | Pure F1 | F1 Delta | Neuro FPR | Pure FPR | McNemar p |
+|---|---:|---:|---:|---:|---:|---:|
+| CSV | 33.3% | 17.6% | +15.8% | 0.0% | 48.9% | 0.0 |
+| SYNTHETIC | 65.5% | 56.2% | +9.3% | 0.6% | 2.4% | 0.0665 |
+| MIMIC | 16.7% | 16.7% | +0.0% | 0.0% | 33.0% | 0.0 |

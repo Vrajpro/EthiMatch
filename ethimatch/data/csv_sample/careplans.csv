@@ -1,0 +1,4 @@
+START,STOP,PATIENT,CODE,DESCRIPTION,REASONDESCRIPTION
+2023-01-15,,P001,385763009,Oncology follow-up (regime/therapy),Non-small cell lung cancer
+2023-03-01,,P001,371529002,Pulmonary rehabilitation care plan (regime/therapy),Non-small cell lung cancer
+2022-06-01,,P002,385763009,Breast cancer screening (regime/therapy),Breast cancer

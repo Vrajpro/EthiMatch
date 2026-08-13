@@ -1,0 +1,23 @@
+# EthiMatch dependencies
+
+# NLP / neural
+transformers>=4.36.0
+torch>=2.1.0
+spacy>=3.7.0
+
+# Data
+pandas>=2.1.0
+numpy>=1.26.0
+
+# Explainability
+shap>=0.44.0
+
+# Frontend / export
+streamlit>=1.29.0
+plotly>=5.18.0
+fpdf2>=2.7.0
+kaleido>=0.2.1
+
+# Utilities
+rich>=13.7.0
+pyyaml>=6.0.0

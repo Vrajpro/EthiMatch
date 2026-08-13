@@ -1,0 +1,9 @@
+{
+  "trial_id": "BASE-002",
+  "trial_name": "General Adult Baseline Study",
+  "description": "Open-cohort baseline study for adults 18 years and older. No disease, biomarker, or exclusion criteria are applied — used as a control benchmark for the symbolic engine.",
+  "inclusion": {
+    "age_min": 18
+  },
+  "exclusion": {}
+}

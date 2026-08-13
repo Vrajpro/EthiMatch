@@ -1,0 +1,25 @@
+{
+  "trial_id": "NCT-FAKE-004",
+  "trial_name": "Phase I/II KRAS G12C NSCLC Targeted Therapy",
+  "description": "An open-label study of a KRAS G12C inhibitor in previously treated advanced NSCLC with confirmed KRAS G12C mutation.",
+  "inclusion": {
+    "age_min": 18,
+    "age_max": 85,
+    "gender": ["male", "female"],
+    "diseases": ["NSCLC"],
+    "stages": ["IIIB", "IV"],
+    "required_biomarkers": ["KRAS G12C"],
+    "ecog_max": 1,
+    "bmi_max": 38.0
+  },
+  "exclusion": {
+    "excluded_comorbidities": [
+      "type 2 diabetes",
+      "CHF"
+    ],
+    "excluded_prior_therapies": [
+      "docetaxel"
+    ],
+    "bmi_min": 17.0
+  }
+}

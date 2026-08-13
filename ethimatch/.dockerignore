@@ -1,0 +1,37 @@
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Python artefacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Git & IDE
+.git/
+.cursor/
+.vscode/
+.idea/
+
+# Local data lake payloads (structure copied via Dockerfile; large files excluded)
+data/bronze/*
+!data/bronze/.gitkeep
+data/silver/*
+!data/silver/.gitkeep
+data/gold/*
+!data/gold/.gitkeep
+data/mimic/
+
+# Evaluation / thesis outputs (optional bind-mount at runtime)
+results/
+
+# OS
+Thumbs.db
+.DS_Store

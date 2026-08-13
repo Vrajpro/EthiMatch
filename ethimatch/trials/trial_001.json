@@ -1,0 +1,28 @@
+{
+  "trial_id": "NCT-FAKE-001",
+  "trial_name": "Phase III NSCLC Immunotherapy + Chemotherapy",
+  "description": "A randomised, double-blind study evaluating pembrolizumab combined with platinum-based chemotherapy in patients with advanced NSCLC.",
+  "inclusion": {
+    "age_min": 18,
+    "age_max": 80,
+    "gender": ["male", "female"],
+    "diseases": ["NSCLC"],
+    "stages": ["III", "IIIA", "IIIB", "IV"],
+    "required_biomarkers": [],
+    "ecog_max": 2,
+    "bmi_max": 35.0
+  },
+  "exclusion": {
+    "excluded_comorbidities": [
+      "type 1 diabetes",
+      "type 2 diabetes",
+      "uncontrolled hypertension",
+      "CHF"
+    ],
+    "excluded_prior_therapies": [
+      "nivolumab",
+      "atezolizumab"
+    ],
+    "bmi_min": 16.0
+  }
+}

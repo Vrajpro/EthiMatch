@@ -1,0 +1,30 @@
+{
+  "trial": "ONC-001",
+  "source": "Synthea",
+  "cohort_size": 200,
+  "elapsed_seconds": 40.603944301605225,
+  "method_a": {
+    "label": "Pure Neural Baseline",
+    "tp": 1,
+    "fp": 0,
+    "tn": 199,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0
+  },
+  "method_b": {
+    "label": "EthiMatch (Neuro-Symbolic)",
+    "tp": 1,
+    "fp": 0,
+    "tn": 199,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0
+  },
+  "dangerous_false_positive_ids_method_a": [],
+  "blocked_by_symbolic_engine": []
+}
