@@ -95,6 +95,22 @@ def build_cover(doc) -> None:
     r2.font.color.rgb = TEAL
     r2.font.name = "Calibri"
 
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_after = Pt(4)
+    r = p.add_run(
+        "Examiner Q&A (if any questions arise while reading this PDF): "
+    )
+    r.font.size = Pt(11)
+    r.font.color.rgb = NAVY
+    r.font.name = "Calibri"
+    r2 = p.add_run(
+        "https://github.com/Vrajpro/EthiMatch/blob/main/docs/EXAMINER_FAQ.md"
+    )
+    r2.font.size = Pt(11)
+    r2.font.color.rgb = TEAL
+    r2.font.name = "Calibri"
+
     for _ in range(2):
         doc.add_paragraph()
 

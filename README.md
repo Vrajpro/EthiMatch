@@ -12,6 +12,9 @@ for academic evaluation, not a clinical product.
 
 Repository: https://github.com/Vrajpro/EthiMatch
 
+Examiner Q&A (common questions and concise answers):  
+https://github.com/Vrajpro/EthiMatch/blob/main/docs/EXAMINER_FAQ.md
+
 ---
 
 ## Features
