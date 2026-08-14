@@ -1,139 +1,140 @@
 # EthiMatch — Examiner Q&A
 
-**Project:** EthiMatch (7005SCN Individual Research Project)  
 **Student:** Vraj Dipakkumar Parekh (16485659)  
+**Module:** 7005SCN Individual Research Project  
 **Repository:** https://github.com/Vrajpro/EthiMatch  
-**Purpose of this file:** Because assessment is PDF-only, this note answers the questions an examiner is most likely to ask after reading the project report and opening the repository.
 
-EthiMatch is a **research prototype**, not a clinical product. It must not be used for real patient care or enrolment decisions.
-
----
-
-## 1. What did you actually build?
-
-EthiMatch is an end-to-end neuro-symbolic clinical-trial matching prototype:
-
-1. **Neural layer** — biomedical NER (+ regex / negation handling) extracts eligibility features from notes  
-2. **Symbolic layer** — deterministic JSON protocol rules return ELIGIBLE / INELIGIBLE / INCONCLUSIVE  
-3. **Explainability** — audit narratives and rule-level outcomes for human review  
-4. **UI** — Streamlit pages: Dashboard, Patient Matching, Cohort Discovery, Evaluation  
-
-Evidence in the report: Chapter 4 figures (architecture + screenshots).  
-Evidence in the repo: `ethimatch/app.py`, `ethimatch_pipeline.py`, `neural_extractor.py`, `symbolic_validator.py`, `ui/pages/`.
+Because this module is assessed by report only, I prepared this note so an examiner can find direct answers after reading the PDF and opening the repository. EthiMatch is a **research prototype** — it is not intended for real patient care or enrolment decisions.
 
 ---
 
-## 2. What is “neuro-symbolic” here (is this just NER + if-else)?
+## 1. What did I build?
 
-Yes, it is deliberately a hybrid:
+I built EthiMatch, an end-to-end neuro-symbolic clinical-trial matching system with four main parts:
 
-- Neural module **perceives** text (entities may be incomplete or uncertain)  
-- Symbolic module **decides** protocol fitness with explicit, inspectable rules  
-- Missing mandatory evidence becomes **INCONCLUSIVE**, not a forced binary guess  
+1. A **neural extraction layer** (biomedical NER, regex, and negation handling) that reads clinical notes  
+2. A **symbolic validation layer** with deterministic JSON protocol rules that return ELIGIBLE, INELIGIBLE, or INCONCLUSIVE  
+3. An **explainability layer** that produces audit narratives and rule-level outcomes for review  
+4. A **Streamlit interface** with Dashboard, Patient Matching, Cohort Discovery, and Evaluation pages  
 
-The research point is separation of concerns for safety and auditability, not claiming a new foundational ML algorithm.
-
----
-
-## 3. What is the pure-neural baseline, and is the comparison fair?
-
-Both systems use the **same extracted entities** for a patient.  
-The baseline applies an inclusion-oriented heuristic **without** full symbolic exclusion / missing-data discipline.  
-EthiMatch runs the full symbolic validator.
-
-So the comparison isolates the decision layer, not a different NER model.
-
-See report Chapter 3 (comparative design) and `ethimatch/evaluation.py`.
+In the report, Chapter 4 and the architecture figures and screenshots show how this fits together. In the repository, the main entry points are `ethimatch/app.py`, `ethimatch_pipeline.py`, `neural_extractor.py`, and `symbolic_validator.py`.
 
 ---
 
-## 4. How is the gold standard created? Is it circular?
+## 2. What do I mean by “neuro-symbolic” here?
 
-Gold labels are derived from **structured profile/CSV fields** validated by protocol rules (active conditions, demographics, etc.), independent of free-text NER success.
+I deliberately separated **reading the note** from **applying the protocol**:
 
-That is reproducible and useful for engineering evaluation, but weaker than independent clinician chart review of free text. The report states this limitation explicitly (Ch6/Ch8).
+- The neural part extracts entities from text; those entities can be incomplete or uncertain  
+- The symbolic part applies trial rules in a deterministic, inspectable way  
+- When required information is missing, the system returns **INCONCLUSIVE** rather than guessing  
 
-It is not “the neural model labelled by itself,” but it **is** aligned with the symbolic protocol definition — that is why claim discipline matters.
-
----
-
-## 5. Why Synthea and MIMIC-IV Demo?
-
-- **Synthea:** scalable synthetic cohort, no privacy barrier, controlled testing  
-- **MIMIC-IV Demo:** public de-identified structured demo data for an external stress test  
-
-This supports dual-source evaluation under MSc/ethics constraints. It does **not** equal multi-site hospital validation.
+My research question was whether this separation improves safety and transparency compared with a purely neural approach — not whether I invented a new deep-learning architecture.
 
 ---
 
-## 6. Which model do you use — BioBERT or DistilBERT?
+## 3. How did I design the baseline comparison, and is it fair?
 
-The deployed extractor is **`d4data/biomedical-ner-all`** (DistilBERT-style biomedical NER via Hugging Face), chosen for CPU feasibility.
+I compared two decision paths on the **same patients** and the **same extracted entities**:
 
-BioBERT is cited as the research paradigm, not as the exact checkpoint identity. The report is written to avoid overselling the model name.
+- **EthiMatch (full pipeline):** entities pass through my symbolic validator with exclusions and missing-data handling  
+- **Pure-neural baseline:** an inclusion-oriented heuristic on the same entities, without the full symbolic safety layer  
+
+Both paths use the same NER output, so the evaluation isolates the effect of the symbolic decision layer. I describe this in Chapter 3 and implement it in `ethimatch/evaluation.py`.
 
 ---
 
-## 7. What are the main results I should trust?
+## 4. How did I create the gold standard? Could this be circular?
 
-Primary synthetic comparative run (`n = 100`, 6 trials), from `ethimatch/results/comparative_benchmark.json`:
+I derived gold labels from **structured patient fields** in the CSV/Synthea profiles (for example active conditions and demographics), validated against the same protocol rules, rather than from free-text NER output alone.
 
-| Metric | EthiMatch | Pure neural |
-|--------|-----------|-------------|
+This makes the benchmark reproducible, but I accept it is weaker than independent clinician review of full clinical notes. I state that limitation clearly in Chapters 6 and 8. The gold standard reflects the protocol definition I implemented; that is why I was careful about what I claim in the results tables.
+
+---
+
+## 5. Why did I use Synthea and MIMIC-IV Demo?
+
+For this MSc project I needed data I could use ethically and reproducibly:
+
+- **Synthea** gave me a scalable synthetic cohort for controlled testing without privacy restrictions  
+- **MIMIC-IV Demo** gave me a public structured dataset as an external check  
+
+Together they support a dual-source evaluation within the time and ethics constraints of the module. I do **not** present this as equivalent to validation on live hospital records.
+
+---
+
+## 6. Which model did I use — BioBERT or something else?
+
+In the running system I use **`d4data/biomedical-ner-all`** (a DistilBERT-style biomedical NER model via Hugging Face). I chose it because it runs on CPU hardware available to me during development.
+
+In the literature review I discuss BioBERT (Lee et al., 2020) as the research background for biomedical language models. I was careful in the report not to imply that BioBERT itself is the deployed checkpoint.
+
+---
+
+## 7. What are the main results an examiner should look at?
+
+My primary synthetic benchmark (`n = 100`, six trials) is saved in `ethimatch/results/comparative_benchmark.json` and reported in the Abstract and Chapter 6:
+
+| Metric | EthiMatch | Pure-neural baseline |
+|--------|-----------|----------------------|
 | F1 | 65.5% | 56.2% |
 | Precision | 64.5% | 48.7% |
 | FPR | 0.6% | 2.4% |
 | McNemar p | ≈ 0.067 (not significant at α = 0.05) | |
 
-Strongest supported finding: **lower false-positive rate** (safety-oriented signal), with improved F1/precision on the main synthetic benchmark.
+The result I trust most is the **reduction in false positive rate**, together with improved F1 and precision on the main synthetic run. I treat FPR as the main safety-related signal in this project.
 
 ---
 
-## 8. McNemar is not significant — what can you claim?
+## 8. McNemar was not significant — what am I allowed to claim?
 
-Claim carefully:
+I report this honestly:
 
-- Direction of discordant pairs favours EthiMatch (14 vs 5)  
-- Effect is **not** statistically conclusive at α = 0.05 on this paired sample  
-- Therefore the project claims a **supported safety trend / engineering result**, not statistical certainty  
+- Discordant pairs favoured EthiMatch (14 vs 5)  
+- The p-value (≈ 0.067) did **not** reach α = 0.05  
+- I therefore describe a **directional improvement**, not statistical proof at conventional significance  
 
-This is stated in Abstract, Chapter 6, and claim-discipline tables.
-
----
-
-## 9. MIMIC performance looks weak. Does that invalidate the project?
-
-No — it bounds external validity.
-
-MIMIC-IV Demo is small and not oncology-dense for these protocols, so absolute F1 can be modest while the safety pattern (lower FPR vs baseline) can still appear. The report treats MIMIC as a stress test, not the primary success claim.
+I do not claim that McNemar confirms superiority at the 5% level. That position is reflected in the Abstract, Chapter 6, and Tables 5 and 7 in the report.
 
 ---
 
-## 10. What is novel for an MSc contribution?
+## 9. MIMIC results look weak — does that weaken the whole project?
 
-Not “first neural trial matcher in literature.” Contribution is an open, reproducible prototype that integrates:
+I do not think it invalidates the work, but it **limits generalisation**.
 
-- dual-source intake under one patient-profile contract  
-- JSON-governed protocols  
-- explicit INCONCLUSIVE semantics  
-- paired comparative evaluation vs pure-neural baseline  
-- clinician-facing audit UI for PDF-only assessment  
+MIMIC-IV Demo is small and not rich in oncology eligibility cases for my trial set, so absolute F1 stays modest. I still use it as a stress test: even there, the pattern of lower false positives relative to the baseline is visible. In the report I treat MIMIC as supporting evidence, not as the primary claim.
 
 ---
 
-## 11. Can the examiner verify numbers without running the app?
+## 10. What is my contribution at MSc level?
 
-Yes:
+I am not claiming to have built the first trial-matching system in the literature. My contribution is a **complete, reproducible prototype** that brings together:
 
-1. Open `ethimatch/results/comparative_benchmark.json`  
-2. Compare with Abstract / Table 1 / Chapter 6  
-3. Cross-source summary also appears in report Table 3 and thesis tables under `ethimatch/results/thesis/`  
+- one patient-profile contract for Synthea and MIMIC-IV Demo  
+- JSON-defined trial protocols with explicit INCONCLUSIVE handling  
+- paired comparison against a pure-neural baseline on identical inputs  
+- a clinician-facing audit UI, evidenced in the report by screenshots for PDF-only assessment  
 
-Screenshots in the report show the UI pathways used for matching, cohort discovery, and evaluation.
+The GitHub repository is part of that contribution so an examiner can inspect the implementation without a live demo.
 
 ---
 
-## 12. How do I run the system from GitHub?
+## 11. How can an examiner verify my numbers without running the app?
+
+An examiner can:
+
+1. Open `ethimatch/results/comparative_benchmark.json` in the repository  
+2. Compare those values with the Abstract, Table 1, and Chapter 6  
+3. Check cross-source summaries in Table 3 and the files under `ethimatch/results/thesis/`  
+4. Cross-check the UI screenshots in Chapter 4 (Figures 6–9) against the described workflows  
+
+I designed the evaluation outputs to be inspectable so the report stands on its own.
+
+---
+
+## 12. How can someone run my system from GitHub?
+
+From the repository root:
 
 ```powershell
 cd ethimatch
@@ -143,65 +144,67 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Full instructions: repository `README.md`.
-
-Note: a few very large Synthea CSVs were excluded from GitHub due to file-size limits; core CSVs needed for the demo pathway are included. Details are in `data/README.md`.
+Further setup notes are in the main `README.md`. A few very large Synthea CSV files are not on GitHub because of file-size limits; the core CSVs needed for the demo path are included. I explain this in `data/README.md`.
 
 ---
 
-## 13. Where is explainability?
+## 13. Where is explainability in my design?
 
-Not only SHAP-style feature attribution language:
+I implemented explainability at two levels:
 
-- rule-level PASS/FAIL/INCONCLUSIVE outcomes  
-- Narrative / Entities / Audit panels in Patient Matching  
-- PDF export path for audit handoff  
+- **Rule level:** each protocol criterion returns PASS, FAIL, or INCONCLUSIVE in the Audit view  
+- **Narrative level:** XAI text summarises why a match was suggested  
 
-Human remains the decision owner.
-
----
-
-## 14. Ethics and data protection — what was done?
-
-- No identifiable real patient data processed  
-- Synthea synthetic + MIMIC-IV Demo boundaries respected  
-- No patient notes uploaded to external generative AI services  
-- Amber AI declaration included in the report  
-
-Production clinical deployment was out of scope.
+The Patient Matching page exposes Narrative, Entities, and Audit tabs (Figure 7 in the report). I also added PDF export for audit handoff. The clinician or coordinator remains the final decision-maker; the system supports review, it does not replace it.
 
 ---
 
-## 15. What does EthiMatch explicitly NOT claim?
+## 14. What did I do for ethics and data protection?
 
-- Not ready for real patient care / regulatory deployment  
-- Not a substitute for clinician enrolment judgement  
-- Not statistically conclusive McNemar significance at 0.05 on the main synthetic pair  
-- Not validated on large multi-site clinician-labelled free-text gold standards  
+Throughout the project I worked only with:
 
-See report Tables 5 and 7 (claim discipline).
+- Synthea synthetic data  
+- the public MIMIC-IV Demo subset  
+- no identifiable real patient records  
 
----
-
-## 16. If something fails when I run it, what should I check first?
-
-1. Python 3.11 + venv from `ethimatch/requirements.txt`  
-2. Run from `ethimatch/` so local imports resolve  
-3. First NER download can be slow on CPU  
-4. Use Evaluation page cached synthetic results for quick verification of reported metrics  
+I did not send patient note content to external generative AI services for processing. The amber AI usage declaration in the report describes how I used AI tools for drafting support only. Clinical deployment and regulatory approval were outside the scope I set for this dissertation.
 
 ---
 
-## Short viva-style answers (one line each)
+## 15. What I explicitly do **not** claim
 
-| Question | One-line answer |
-|----------|-----------------|
-| What is novel? | Reproducible neuro-symbolic matching with INCONCLUSIVE semantics, JSON protocols, paired eval, and audit UI. |
-| Why symbolic layer? | To reduce unsafe false positives and make protocol criteria explicit/auditable. |
-| Why not clinically ready? | Synthetic/demo data, limited protocols, structured gold, McNemar not significant at 0.05. |
-| Main empirical finding? | Lower FPR and better F1/precision on the main synthetic benchmark vs pure neural. |
-| Where is proof? | Report Ch4–Ch6 + `results/comparative_benchmark.json` + UI screenshots. |
+I want to be clear that I am **not** claiming:
+
+- readiness for real clinical deployment or regulatory use  
+- that EthiMatch should replace clinician judgement on enrolment  
+- statistical significance for McNemar at α = 0.05 on the main synthetic paired comparison  
+- validation on a large multi-site clinician-labelled free-text gold standard  
+
+These boundaries are summarised in Tables 5 and 7 of the report.
 
 ---
 
-If further clarification is needed, the project report and this repository are intended to be self-contained for PDF-only examination.
+## 16. If the app does not run first time — what I would check
+
+These are the checks I used during development:
+
+1. Python 3.11 and a virtual environment with `ethimatch/requirements.txt`  
+2. Running commands from the `ethimatch/` folder so imports resolve  
+3. Allowing time for the first Hugging Face model download on CPU  
+4. Using the Evaluation page with cached synthetic results to confirm the reported benchmark numbers quickly  
+
+---
+
+## Quick reference (how I would answer in a viva)
+
+| Question | How I would answer |
+|----------|-------------------|
+| What is novel? | A reproducible neuro-symbolic prototype with INCONCLUSIVE semantics, JSON protocols, paired evaluation, and an audit UI — all documented in the report and repo. |
+| Why a symbolic layer? | To reduce unsafe false positives and make protocol logic explicit and reviewable. |
+| Why not clinically ready? | Synthetic/demo data, limited protocols, structured gold labels, and McNemar not significant at 0.05. |
+| Main finding? | Lower FPR and better F1/precision on my main synthetic benchmark versus the pure-neural baseline. |
+| Where is the evidence? | Report Chapters 4–6, `results/comparative_benchmark.json`, and the UI screenshots. |
+
+---
+
+If anything in the report is unclear, I hope this file and the repository together give enough context for PDF-only examination. I am happy to clarify further through the normal module channels if required.
