@@ -9,7 +9,7 @@ This is the source code for my MSc project. I built **EthiMatch**, a research pr
 
 **Project report (PDF submission):** the marked dissertation is submitted through Turnitin. This repository is so an examiner can inspect the implementation, data, and saved results.
 
-**Short Q&A for examiners:** [docs/EXAMINER_FAQ.md](docs/EXAMINER_FAQ.md)
+**Examiner Q&A (open this file on the GitHub home page):** [Examiner-QA.md](Examiner-QA.md)
 
 ---
 
