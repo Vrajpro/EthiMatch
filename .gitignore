@@ -63,3 +63,14 @@ data/synthea/claims.csv
 # Scratch / personal artifacts
 ethimatch/personal learn.docx
 ethimatch/results/test_*.pdf
+
+# Local coursework / submission copies (not part of the public code repo)
+7005SCN*
+CW1_*
+EthiMatch_CW1*
+cover_page*
+receipt_*
+"report ss/"
+report ss/
+*.pdf.pdf
+docs/reports/*.pdf
